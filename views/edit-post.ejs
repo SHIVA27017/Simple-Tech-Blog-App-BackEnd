@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- includes other ejs file (older version) -->
+  <%- include("includes/head") %>
+  <body>
+    <!-- includes other ejs file (older version) -->
+    <%- include("includes/header") %>
+
+    <main>
+      <form action="/edit-post/<%= post.id %>" method="post">
+        <% errors.forEach(err => { %>
+        <p class="notice"><%= err %></p>
+        <% }); %>
+
+        <fieldset>
+          <legend>Edit the post</legend>
+          <label for="title"><small>Title</small></label>
+          <input
+            type="text"
+            value="<%= post.title %>"
+            id="title"
+            name="title"
+            autocomplete="off"
+          />
+
+          <label for="body"><small>Content</small></label>
+          <textarea name="content" id="body"><%= post.content %></textarea>
+          <br />
+          <button type="submit">Save Changes</button>
+        </fieldset>
+      </form>
+    </main>
+    <!-- includes other ejs file (older version) -->
+    <%- include("includes/footer") %>
+  </body>
+</html>

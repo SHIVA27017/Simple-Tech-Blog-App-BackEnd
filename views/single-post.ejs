@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- includes other ejs file (older version) -->
+  <%- include("includes/head") %>
+  <body>
+    <!-- includes other ejs file (older version) -->
+    <%- include("includes/header") %>
+
+    <main>
+      <h1><%= post.title %></h1>
+      <article>
+        <small
+          >posted by <%= post.username %> on <%= new
+          Date(post.createdDate).getMonth()+1 %>/<%= new
+          Date(post.createdDate).getDate() %>/<%= new
+          Date(post.createdDate).getFullYear() %></small
+        >
+        <p><%= post.content %></p>
+
+        <div><%- filterUserHTML(post.content) %></div>
+      </article>
+
+      <% if(isAuthor){%>
+      <a href="/edit-post/<%= post.id %>" class="button">Edit Post</a>
+      <form
+        style="display: inline"
+        action="/delete-post/<%= post.id %>"
+        method="post"
+      >
+        <button>delete</button>
+      </form>
+      <%} %>
+    </main>
+    <!-- includes other ejs file (older version) -->
+    <%- include("includes/footer") %>
+  </body>
+</html>
